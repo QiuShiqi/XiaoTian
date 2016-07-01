@@ -2,10 +2,10 @@
 
 conn scott/admin;
 
-drop sequence xiaotian_user_add;
-drop sequence xiaotian_friend_add;
-drop sequence xiaotian_record_add;
-drop sequence xiaotian_system_add;
+--drop sequence xiaotian_user_add;
+--drop sequence xiaotian_friend_add;
+--drop sequence xiaotian_record_add;
+--drop sequence xiaotian_system_add;
 
 create sequence xiaotian_user_add
 	increment by 1
@@ -32,10 +32,10 @@ create sequence xiaotian_system_add
 	nomaxvalue
 	nocycle;
 
-drop table xiaotian_system;
-drop table xiaotian_record;
-drop table xiaotian_friend;
-drop table xiaotian_user;
+--drop table xiaotian_system;
+--drop table xiaotian_record;
+--drop table xiaotian_friend;
+--drop table xiaotian_user;
 
 create table xiaotian_user(
 	id number constraint user_id_pk primary key,
@@ -74,14 +74,14 @@ create table xiaotian_system(
 	type varchar2(25) not null
 );
 
---Ìí¼ÓÓÃ»§
+--æ·»åŠ ç”¨æˆ·
 insert into xiaotian_user values(xiaotian_user_add.nextval, 'admin', 'qweqwe', 'admin', sysdate, '127.0.0.1', 'default');
 insert into xiaotian_user values(xiaotian_user_add.nextval, 'test1', 'test1', 'user', sysdate, '127.0.0.1', 'default');
-insert into xiaotian_user values(xiaotian_user_add.nextval, '²âÊÔ2', 'test2', 'user', sysdate, '127.0.0.1', 'default');
+insert into xiaotian_user values(xiaotian_user_add.nextval, 'æµ‹è¯•2', 'test2', 'user', sysdate, '127.0.0.1', 'default');
 insert into xiaotian_user values(xiaotian_user_add.nextval, 'test3', 'test3', 'user', sysdate, '127.0.0.1', 'default');
 
 
---Ìí¼Ó¹ØÏµ
+--æ·»åŠ å…³ç³»
 insert into xiaotian_friend values(xiaotian_friend_add.nextval, 2, 3, sysdate, 'default');
 insert into xiaotian_friend values(xiaotian_friend_add.nextval, 2, 4, sysdate, 'default');
 insert into xiaotian_friend values(xiaotian_friend_add.nextval, 3, 2, sysdate, 'default');
@@ -89,7 +89,7 @@ insert into xiaotian_friend values(xiaotian_friend_add.nextval, 3, 4, sysdate, '
 insert into xiaotian_friend values(xiaotian_friend_add.nextval, 4, 2, sysdate, 'default');
 insert into xiaotian_friend values(xiaotian_friend_add.nextval, 4, 3, sysdate, 'default');
 
---Ìí¼Ó¼ÇÂ¼
+--æ·»åŠ è®°å½•
 insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 3, '2->3.1', sysdate, 'default');
 insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 3, '2->3.2', sysdate, 'default');
 insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 3, '2->3.3', sysdate, 'default');
@@ -100,10 +100,10 @@ insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 4, 'test2->4.
 insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 4, 'test2->4.2', sysdate, 'default');
 insert into xiaotian_record values(xiaotian_record_add.nextval, 2, 4, 'test2->4.3', sysdate, 'default');
 
---Ìí¼ÓÅäÖÃ	1´ú±íËùÓĞÓÃ»§
+--æ·»åŠ é…ç½®	1ä»£è¡¨æ‰€æœ‰ç”¨æˆ·
 insert into xiaotian_system values(xiaotian_system_add.nextval, 1, 'on', sysdate, 'system_type');
 
---ÖØÆôÊı¾İ¿â
+--é‡å¯æ•°æ®åº“
 conn sys/admin as sysdba;
 shutdow immediate;
 startup;

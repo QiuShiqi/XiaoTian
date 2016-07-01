@@ -17,23 +17,25 @@ public class BaseModule {
 
 	public static boolean Config() {
 		String configFile;
-		if(Main.debugMode){
+		if (Main.debugMode) {
 			configFile = (new File("")).getAbsolutePath() + "\\src\\Config.ini";
-		}else{
+		} else {
 			configFile = (new File("")).getAbsolutePath() + "\\Config.ini";
 		}
-		
+
 		if ((new File(configFile)).exists()) {
 			try {
 				FileInputStream file = new FileInputStream(configFile);
 				Properties ini = new Properties();
 				ini.load(file);
 
-				String host = ini.get("host").toString();
-				int port = Integer.parseInt(ini.get("port").toString());
-				String userName = ini.get("username").toString();
-				String password = ini.get("password").toString();
-				BaseModule.databaseInfo = new DatabaseInfo(host, port, userName, password);
+				String type = ini.get("database.type").toString();
+
+				String host = ini.get(type + ".host").toString();
+				int port = Integer.parseInt(ini.get(type + ".port").toString());
+				String userName = ini.get(type + ".username").toString();
+				String password = ini.get(type + ".password").toString();
+				BaseModule.databaseInfo = new DatabaseInfo(type, host, port, userName, password);
 
 			} catch (Exception e) {
 				return false;
@@ -48,7 +50,7 @@ public class BaseModule {
 
 	public static int stringToTime(String time) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		
+
 		try {
 			Date date = simpleDateFormat.parse(time);
 			String tmp = String.valueOf(date.getTime());
@@ -80,12 +82,12 @@ public class BaseModule {
 
 		JOptionPane.showMessageDialog(null, content, tmp + " - " + BaseModule.projectName, type); // JOptionPane.ERROR_MESSAGE
 	}
-	
-	public static String imageLoader(String src){
+
+	public static String imageLoader(String src) {
 		return "Images/" + src;
 	}
 
-	public static int getTime(){
+	public static int getTime() {
 		SimpleDateFormat tmp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return BaseModule.stringToTime(tmp.format(new java.util.Date()));
 	}
