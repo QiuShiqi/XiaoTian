@@ -1,4 +1,5 @@
-#https://github.com/QiuShiqi/XiaoTian
+#https://github.com/QiuShiqi/XiaoTian 
+#请使用执行“SQL命令”的方式以下命令 否则将会出现错误
 
 #drop database XiaoTian;
 create database XiaoTian character set utf8;
